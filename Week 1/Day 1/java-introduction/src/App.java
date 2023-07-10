@@ -26,7 +26,7 @@ public class App {
         String professions = scanner.nextLine();
         System.out.println("Enter an event: ");
         String event = scanner.nextLine();
-        System.out.println("Enter an adjective: ");
+        System.out.println("Enter an adverb: ");
         String adjective = scanner.nextLine();
         System.out.println("Enter a nickname: ");
         String nickname = scanner.nextLine();
