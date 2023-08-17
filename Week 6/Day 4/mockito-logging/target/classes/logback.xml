@@ -1,0 +1,41 @@
+<configuration debug="true">
+    <!-- appenders -->
+    <appender name="console-appender" class="ch.qos.logback.core.ConsoleAppender">
+        <!-- sends information to destination -->
+        <encoder>
+            <!-- pattern is a type of layout: used to format the information -->
+            <pattern>
+                <!--  https://logback.qos.ch/manual/layouts.html --> | %date{dd MMM yyyy | HH:mm:ss.SSS} | %-5level [%thread] %class{50}:
+                %blue(%message) | %n </pattern>
+        </encoder>
+    </appender>
+
+    <appender name="file-appender" class="ch.qos.logback.core.FileAppender">
+        <!-- specify which file to append to -->
+        <file>logs/app-logs.log</file>
+        <append>true</append>
+        <encoder>
+            <pattern>
+                <!--  https://logback.qos.ch/manual/layouts.html --> | %date{dd MMM yyyy | HH:mm:ss.SSS} | %-5level [%thread] %class{50}: %message
+                | %n </pattern>
+        </encoder>
+    </appender>
+
+    <!-- loggers -->
+    <!-- The issue I had had to do with logger hierarchy and inheritance -->
+    <!-- https://logback.qos.ch/manual/architecture.html#effectiveLevel -->
+    <!-- my com.revature logger inherited the console appender from root, 
+    meaning its logs would go to the file and console. The level stayed at
+INFO the entire time, because I was changing root's level, which only affected
+logs that were output from code that wasn't mine (like Javalin) -->
+    <logger name="com.revature" level="INFO">
+        <appender-ref ref="file-appender" />
+    </logger>
+
+    <!-- root given by default UNLESS we have config file. 
+        If we have config file, explicitly add in root -->
+    <root level="ERROR">
+        <appender-ref ref="console-appender" />
+    </root>
+
+</configuration>
