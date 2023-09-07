@@ -14,7 +14,6 @@ public class E_JoiningThreads {
         simpleThread.start();
 
         // Thread.currentThread().interrupt();
-        // Thread.currentThread().wait(); // wait not recommended
 
         // joining: current thread waits on simpleThread to finish executing
         // at this time thread1 and 2 take turns
